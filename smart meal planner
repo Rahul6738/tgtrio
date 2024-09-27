@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Meal Planner</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .container {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        color: #28a745;
+    }
+    
+    select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+    
+    #mealPlan {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Meal Planner</h1>
+        <p>Select your preference:</p>
+
+        <div class="meal-selector">
+            <select id="mealType" onchange="generateMealPlan()">
+                <option value="" selected disabled>Select type</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="non-vegetarian">Non-Vegetarian</option>
+            </select>
+        </div>
+
+        <div id="mealPlan">s
+            <!-- Meal plan will be displayed here -->
+        </div>
+    </div>
+
+    <script>function generateMealPlan() {
+        const mealType = document.getElementById("mealType").value;
+        const mealPlanDiv = document.getElementById("mealPlan");
+    
+        const vegetarianMeals = {
+            breakfast: "Avocado Toast with Fresh Fruit",
+            lunch: "Grilled Veggie Wrap with Hummus",
+            dinner: "Quinoa Salad with Roasted Vegetables",
+            snack: "Greek Yogurt with Honey and Nuts"
+        };
+    
+        const nonVegetarianMeals = {
+            breakfast: "Scrambled Eggs with Whole Grain Toast",
+            lunch: "Chicken Caesar Salad",
+            dinner: "Grilled Salmon with Steamed Vegetables",
+            snack: "Tuna Sandwich with Fresh Greens"
+        };
+    
+        let selectedMealPlan;
+    
+        if (mealType === "vegetarian") {
+            selectedMealPlan = vegetarianMeals;
+        } else if (mealType === "non-vegetarian") {
+            selectedMealPlan = nonVegetarianMeals;
+        } else {
+            mealPlanDiv.innerHTML = "Please select a valid meal type.";
+            return;
+        }
+    
+        // Display the meal plan
+        mealPlanDiv.innerHTML = `
+            <h2>${mealType.charAt(0).toUpperCase() + mealType.slice(1)} Meal Plan:</h2>
+            <p><strong>Breakfast:</strong> ${selectedMealPlan.breakfast}</p>
+            <p><strong>Lunch:</strong> ${selectedMealPlan.lunch}</p>
+            <p><strong>Dinner:</strong> ${selectedMealPlan.dinner}</p>
+            <p><strong>Snack:</strong> ${selectedMealPlan.snack}</p>
+        `;
+    }
+    </script>
+</body>
+</html>
